@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+
+  application_dev:
+    image: dnd5e-tool-php-app
+    container_name: dnd5e-tool-php-app
+    build:
+      context: .
+      dockerfile: docker/App/Dockerfile
+      target: dev
+    volumes: #special case "mount vlume"
+      - ./:/var/www/html:rw
+
+
+  application_prod:
+    image: dnd5e-tool-php-app
+    container_name: dnd5e-tool-php-app
+    build:
+      context: .
+      dockerfile: docker/App/Dockerfile
+      target: base
+    volumes: #special case "mount vlume"
+      - ./:/var/www/html:rw

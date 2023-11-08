@@ -1,0 +1,22 @@
+<form class="form-row" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div>
+            <label for="formFile1" class="form-label">Upload the (first) json file</label>
+            <input class="form-control border border-primary" type="file" id="fileSelect" name="formFile1"
+                   accept="application/json">
+        </div>
+        <br>
+        <div>
+            <label for="formFile2" class="form-label">Upload the (second) json file</label>
+            <input class="form-control border border-primary" type="file" id="fileSelect" name="formFile2"
+                   accept="application/json">
+        </div>
+        <br>
+        <div class="text-center">
+            <button type="submit" class="btn w-50 btn-outline-primary" name="submit">Submit</button>
+        </div>
+    </div>
+</form>
+{% block stylesheets %}
+    <link rel="stylesheet" href="./Presentation/components/molecules/file-input-form/styles/file.input.form.css" />
+{% endblock %}

@@ -1,0 +1,54 @@
+{% set atom_path = './components/atoms/' %}
+
+<div id='differencesTable' class="container-fluid">
+    <table class="table table-bordered table-hover">
+
+        <thead class="upper-header">
+        <tr>
+            <th scope="col" colspan="3">Different values of path present in both files</th>
+            <th scope="col">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Diff Table</a></li>
+                        <li class="breadcrumb-item"><a onclick="goToRemovedTable()">Removed Table</a></li>
+                        <li class="breadcrumb-item"><a onclick="goToAddedTable()">Added Table</a></li>
+                    </ol>
+                </nav>
+            </th>
+        </tr>
+        </thead>
+
+        <thead class="table-dark align-middle rounded" id="lower-header">
+        <tr>
+            <th scope="col" class="diff-column-number">Diff. Nr</th>
+            <th scope="col">Path</th>
+            <th scope="col">Value: <span class="json-file-name1"> {{ jsonFileName1 }} </span></th>
+            <th scope="col">Value: <span class="json-file-name2"> {{ jsonFileName2 }} </span></th>
+        </tr>
+        </thead>
+        <tbody id="differencesTableRows">
+        </tbody>
+    </table>
+</div>
+
+{% block javascript %}
+{% if compareJsonActionResults is not empty %}
+    <script>
+        var compareJsonActionResults = {{ compareJsonActionResults|raw }};
+        var compareJsonActionResultsRemoved = {{ compareJsonActionResultsRemoved|raw }}
+
+        var jsonFileName1 = {{ jsonFileName1|raw }};
+        var jsonFileName2 = {{ jsonFileName2|raw }};
+
+        var falseIcon = '{{ falseIcon|raw }}';
+        var arrowDownIcon = '{{ arrowDownIcon|raw }}';
+        var arrowUpIcon = '{{ arrowUpIcon|raw }}';
+    </script>
+    <script src="../Presentation/components/molecules/differences-table/js/event-handler.js"></script>
+    <script src="../Presentation/components/molecules/differences-table/js/diff-table-builder.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="../Presentation/components/molecules/differences-table/styles/differences.table.css"/>
+{% endblock %}

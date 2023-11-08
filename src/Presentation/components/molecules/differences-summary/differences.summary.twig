@@ -1,0 +1,19 @@
+<div class="row align-items-center">
+    <div id='differencesSummary'></div>
+</div>
+
+{% block javascript %}
+{% if compareJsonActionResults is not empty and jsonFileName1 != "" or null and jsonFileName2 != "" or null %}
+    <script>
+        var compareJsonActionResults = {{ compareJsonActionResults|raw }};
+        var jsonFileName1 = '<span class="json-file-name1">' + {{ jsonFileName1|raw }} + '</span>';
+        var jsonFileName2 = '<span class="json-file-name2">' + {{ jsonFileName2|raw }}  + '</span>';
+    </script>
+    <script src="../Presentation/components/molecules/differences-summary/js/summary-table-builder.js"></script>
+{% endif %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet"
+          href="../Presentation/components/molecules/differences-summary/styles/differences.summary.css"/>
+{% endblock %}

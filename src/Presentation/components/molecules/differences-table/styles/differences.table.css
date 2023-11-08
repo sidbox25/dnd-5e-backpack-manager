@@ -1,0 +1,53 @@
+pre {
+    background-color: ghostwhite;
+    border: 1px solid silver;
+    border-radius: 3px;
+    padding: 10px 20px;
+    margin: 0 20px;
+    overflow-x:scroll;
+    max-height:100%;
+    white-space: nowrap;
+}
+
+.hidden {
+    display: none;
+}
+
+pre::-webkit-scrollbar {
+    width: 5px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: rgba(243, 234, 234, 0.75);
+}
+
+pre::-webkit-scrollbar-thumb {
+    background-color: rgb(44, 43, 43);
+    border-radius: 1px;
+    border: 1px solid rgb(44, 43, 43);
+}
+
+#differencesTable{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td {
+    overflow-wrap: break-word;
+}
+
+.diff-column-number {
+    width: 5%;
+}
+
+.upper-header th {
+    background-color: #f8f9fa;
+    border: none; /* Remove borders if desired */
+}

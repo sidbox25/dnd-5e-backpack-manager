@@ -1,0 +1,33 @@
+h1 {
+    color: var(--white);
+}
+
+h4 {
+    color: var(--green);
+}
+
+label {
+    color: var(--white);
+}
+
+.btn-outline-primary:active, .btn-outline-primary:visited {
+    background-color: var(--green) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--green) !important;
+    color: var(--white);
+}
+
+.btn-outline-primary {
+    color: var(--green);
+    border: 1px var(--green) solid !important;
+}
+
+.border-primary {
+    border: 1px var(--green) solid !important;
+}
+
+.border-primary:active {
+    border: 1px var(--green) solid !important;
+}

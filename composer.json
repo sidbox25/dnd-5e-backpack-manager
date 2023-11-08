@@ -1,0 +1,28 @@
+{
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "autoload-dev": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "phpunit/phpunit": "^9.5",
+    "squizlabs/php_codesniffer": "*",
+    "phpstan/phpstan": "^1.5"
+  },
+  "require": {
+    "slevomat/coding-standard": "*",
+    "twig/twig": "v3.7.1",
+    "swaggest/json-diff": "^3.10"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

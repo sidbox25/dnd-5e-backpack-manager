@@ -1,0 +1,28 @@
+* {
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+:root {
+    --background: #211e2c;
+    --white: #fffbfc;
+    --orange: #f8593e;
+    --pink: #f49587;
+    --vanilla: #eeeabd;
+    --gray: #5b505b;
+    --gray2: #515671;
+    --green: #b8caa7;
+    --yellow: #f7d662;
+}
+
+body {
+    background-color: var(--background);
+}
+
+#content {
+    margin: 0 6rem 0 6rem;
+}
+
+.alert {
+    margin: 0 6rem 0 6rem;
+}

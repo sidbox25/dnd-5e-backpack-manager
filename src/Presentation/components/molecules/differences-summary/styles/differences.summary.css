@@ -1,0 +1,16 @@
+.bg-secondary {
+    background-color: var(--gray) !important;
+}
+
+.card {
+    height: 10rem !important;
+    border: 1px black solid;
+}
+
+.json-file-name1 {
+    color: var(--yellow);
+}
+
+.json-file-name2 {
+    color: var(--pink);
+}

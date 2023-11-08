@@ -1,0 +1,23 @@
+{% extends './templates/base.template.twig' %}
+
+{% block content %}
+    {% block header %}
+        <div class="container-fluid p-3 #fff text-black text-center rounded">
+            <h1>dnd inventory manager</h1>
+            <h4>Welcome aboard!</h4>
+        </div>
+    {% endblock %}
+
+    {% block body %}
+        {% for character in characters %}
+            <pre>{{ character.name }} has:</pre>
+            {% for container in character.containers %}
+                <pre>   {{ container.name }} has:</pre>
+                {% for item in container.items %}
+                    <pre>       {{ item.name }} X {{ item.quantity}} </pre>
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+    {% endblock %}
+{% endblock %}
