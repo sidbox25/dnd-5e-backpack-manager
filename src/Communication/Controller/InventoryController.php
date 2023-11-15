@@ -21,8 +21,6 @@ class InventoryController
         $PossessionsManager = $businessFactory->CreatePossessionsManager();
 
 
-
-
         echo $this->getView(
             __DIR__ . "/../../Presentation/",
             "views/json.comparator.main.layout.twig",

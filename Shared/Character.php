@@ -6,6 +6,9 @@ class Character
 {
     private string $name;
     private int $strength;
+    /**
+     * @var array<\Shared\Container>
+     */
     private array $containers;
     private int $caringCapacity;
 
@@ -14,6 +17,10 @@ class Character
         $this->name = $name;
         $this->strength = $strength;
         $this->containers = $containers;
+    }
+
+    public function save(){
+
     }
 
     /**
@@ -83,10 +90,15 @@ class Character
 
     /**
      * @return array<Container>
-*/
+    */
     public function getContainers(): array
     {
         return $this->containers;
+    }
+
+    public function getContainer($name): Container
+    {
+        return $this->containers[$name];
     }
 
     public function setContainers(array $containers): Character

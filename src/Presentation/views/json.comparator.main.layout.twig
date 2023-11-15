@@ -9,15 +9,37 @@
     {% endblock %}
 
     {% block body %}
+
+        <ul>
         {% for character in characters %}
-            <pre>{{ character.name }} has:</pre>
+            <div class="character-block">
+            <li><p class="character-{{ character.name }}">{{ character.name }} has:</p></li>
+            <ul>
             {% for container in character.containers %}
-                <pre>   {{ container.name }} has:</pre>
+                <li><p class="bag-{{ container.name }}">{{ container.name }} has:</p></li>
+                <ul>
                 {% for item in container.items %}
-                    <pre>       {{ item.name }} X {{ item.quantity}} </pre>
+                    <li><p class="item-{{ item.name }}">
+                            <span class="item-name">{{ item.name }}</span>
+                            X
+                            <span class="item-quantity">{{ item.quantity}}</span>
+                            <span class="btn-span">
+                                <form method="post">
+                                    <input type="submit" name="btn-add-{{ character.name }}-{{ container.name }}-{{ item.name }}" value="+">
+
+                                    <input type="submit" name="btn-remove-{{ character.name }}-{{ container.name }}-{{ item.name }}" value="-">
+                                </form>
+                            </span>
+                        </p>
+                    </li>
                 {% endfor %}
+                </ul>
             {% endfor %}
+            </ul>
+            </div>
         {% endfor %}
+
+        </ul>
 
     {% endblock %}
 {% endblock %}

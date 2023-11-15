@@ -1,0 +1,81 @@
+{
+  "campaign": "temp",
+  "characters": [
+    {
+      "name": "ragnar",
+      "strength": 15,
+      "bags":[
+        {
+          "name": "backpack",
+          "type": "backpack",
+          "items":[
+            {
+              "name": "rations",
+              "quantity": 20,
+              "singleValue": 0.05
+            },
+            {
+              "name": "arrows",
+              "quantity": 20,
+              "singleValue": 0.05
+            },
+            {
+              "name": "sword",
+              "quantity": 1,
+              "singleValue": 15
+            }
+          ]
+        },
+        {
+          "name": "satchel",
+          "type": "satchel",
+          "items":[
+            {
+              "name": "herbs",
+              "quantity": 20,
+              "singleValue": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mosis",
+      "strength": 15,
+      "bags":[
+        {
+          "name": "backpack",
+          "type": "backpack",
+          "items":[
+            {
+              "name": "rations",
+              "quantity": 20,
+              "singleValue": 0.05
+            },
+            {
+              "name": "bolts",
+              "quantity": 20,
+              "singleValue": 0.05
+            },
+            {
+              "name": "sword",
+              "quantity": 1,
+              "singleValue": 15
+            }
+          ]
+        },
+        {
+          "name": "satchel",
+          "type": "satchel",
+          "items":[
+            {
+              "name": "herbs",
+              "quantity": 20,
+              "singleValue": 0.05
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

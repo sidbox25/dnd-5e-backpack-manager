@@ -6,6 +6,9 @@ class Container
 {
     private string $type;
     private int $capacity;
+    /**
+     * @var array<\Shared\Item>
+     */
     private array $items;
     private string $name;
 
@@ -22,6 +25,10 @@ class Container
         $this->name = $name;
     }
 
+
+    public function save(){
+
+    }
 
 
     /**
@@ -56,6 +63,29 @@ class Container
         return 1;
     }
 
+    public function removeAmountFromItem(string $name, int $amount):int
+    {
+        if (isset($this->items[$name])) {
+            if ($this->items[$name]->getQuantity() <=1)
+            {
+                $this->removeItemByName($name);
+                return 0;
+            }
+            $this->items[$name]->setQuantity($this->items[$name]->getQuantity()-1);
+            return 0;
+        }
+        return 1;
+    }
+
+    public function addAmountFromItem(string $name, int $amount):int
+    {
+        if (isset($this->items[$name])) {
+            $this->items[$name]->setQuantity($this->items[$name]->getQuantity()+1);
+            return 0;
+        }
+        return 1;
+    }
+
     /**
      * @return void
      */
@@ -80,6 +110,11 @@ class Container
     public function getItems(): array
     {
         return $this->items;
+    }
+
+    public function getItem($name): Item
+    {
+        return $this->items[$name];
     }
     public function setItems(array $items): Container
     {

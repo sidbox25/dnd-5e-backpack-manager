@@ -15,6 +15,10 @@ class Item
         $this->totalValue = $totalValue;
     }
 
+    public function save(){
+
+    }
+
     public function getName(): string
     {
         return $this->name;

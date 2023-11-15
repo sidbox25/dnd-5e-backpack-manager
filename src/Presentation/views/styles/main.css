@@ -1,6 +1,6 @@
 * {
-    margin: 0 0 0 0;
-    padding: 0;
+    /*margin: 0 0 0 0;*/
+    /*padding: 0;*/
 }
 
 :root {
@@ -15,14 +15,29 @@
     --yellow: #f7d662;
 }
 
-body {
-    background-color: var(--background);
+/*body {*/
+/*    background-color: var(--background);*/
+/*}*/
+
+/*#content {*/
+/*    margin: 0 6rem 0 6rem;*/
+/*}*/
+
+
+
+.character {
+    /*margin: 0 0 0 0;*/
 }
 
-#content {
-    margin: 0 6rem 0 6rem;
+.container {
+    /*margin: 0 0 0 0;*/
 }
 
-.alert {
-    margin: 0 6rem 0 6rem;
+.item {
+    /*margin: 0 0 0 0;*/
+}
+
+.character-block {
+    display: inline-block;
+    padding-right: 5%;
 }
