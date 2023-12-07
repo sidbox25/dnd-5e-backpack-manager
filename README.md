@@ -1,6 +1,11 @@
 ### todo
 
-- properly set up database and bot user
+
+
+
+- properly set up database and bot user 
+    - run script on startup
+
 - make entetyManager, entityReader, entityWriter
 - connect entity manager with main program
 - adjust rest of program
@@ -12,6 +17,8 @@
 
 
 - make plan on how to add/remove items/containers/charters from the frontend(maybe a "+"/"-" button next to each item to add)
+- add hp coutner
+
 
 - load/get item database with complete values
 - make FE look nicer with ?outlines? but chars side by side
