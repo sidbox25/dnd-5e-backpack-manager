@@ -1,17 +1,24 @@
 ### todo
 
-
-
-
 - properly set up database and bot user 
     - run script on startup
 
 - make entetyManager, entityReader, entityWriter
+
+
+
+
+
+=======
+- add items by providing name, value quantity and 
+- properly set up database and bot user
+- make entityManager, entityReader, entityWriter 
+- Stashed changes
 - connect entity manager with main program
 - adjust rest of program
 
-
-
+- use javascript to update frontend and send signal to backend to update db
+- have the current state internally stored in js
 - load item database with data
 - take into account weight
 
@@ -29,10 +36,16 @@
 - refine DTO(data trasnfer objects)
 - add a proper feedabck message to user
 - add CC(carring capacity constraints)
+- ?redo with mongo db?
 
+### info
+- https://github.com/5e-bits/5e-database/
+- docker run -p 127.0.0.1:27017:27017/tcp ghcr.io/5e-bits/5e-database:latest
 
+- phpmyadmin on 8080
+- docker-compose kill db;docker-compose up --build -d db;docker-compose logs db
 
-- test
+- use netlify to deploy(DO NOT DEPLOEY UNTILL SECIRUTY ISSUES HAVE BEEN FIXED, db and secrets)
 
 
 

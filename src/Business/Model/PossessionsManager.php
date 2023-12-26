@@ -49,7 +49,7 @@ class PossessionsManager
         $Racknar->getContainer("backpack")->addItem("sword",1,15);
 
         $Racknar->addContainer("pouch","pouch",10);
-        $Racknar->getContainers()["pouch"]->addItem("herbs",10,15);
+        $Racknar->getContainer("pouch")->addItem("herbs",10,15);
 
 
         $mosis = new Character("mosis",15);
@@ -95,8 +95,6 @@ class PossessionsManager
                     [self::CHARACTER_NAME => $explodedPost[2],
                         self::BAG_NAME => $explodedPost[3],
                         self::ITEM_NAME => $explodedPost[4]];
-
-
 
                 if ($explodedPost[1] == "add"){
                     $this->addItemQuantity($path);

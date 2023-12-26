@@ -18,7 +18,8 @@
   "require": {
     "slevomat/coding-standard": "*",
     "twig/twig": "v3.7.1",
-    "swaggest/json-diff": "^3.10"
+    "swaggest/json-diff": "^3.10",
+    "ext-pdo": "*"
   },
   "config": {
     "allow-plugins": {
