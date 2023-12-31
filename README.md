@@ -1,11 +1,16 @@
 ### todo
 
-- properly set up database and bot user 
-    - run script on startup
+-btw use sql "transactions" on prod ("begin transaction")
 
-- make entetyManager, entityReader, entityWriter
+- solve "Uncaught PDOException: could not find driver" in connector.php
+- install/enable pdo_mysql in php.ini
 
+- make jsonDecode output usable/ check what is gotten(for now )
 
+- properly set up database and bot user (?is done? await further testing)
+    - run script on startup(?is done? await further testing)
+
+- adapt database script(?is done? await further testing)
 
 
 

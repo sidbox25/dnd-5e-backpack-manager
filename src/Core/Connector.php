@@ -2,6 +2,7 @@
 
 namespace src\Core;
 
+use PDO;
 use src\Core\Configuration\Database\ConnectionConfig;
 
 class Connector
@@ -31,7 +32,7 @@ class Connector
             PDO::ATTR_PERSISTENT => true
         ];
 
-        self::$connection = new PDO($dnsString, $username, $password, $options);
+        self::$connection = new PDO($dnsString, $username, $password, $options);#todo why "Uncaught PDOException: could not find driver " whyyyy
 
         return self::$connection;
     }

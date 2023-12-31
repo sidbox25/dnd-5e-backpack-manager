@@ -26,23 +26,29 @@ class Container
     }
 
 
-    public function save(){
+    public function toArray()
+    {
+        $itemsArr = [];
+        foreach ($this->items as $name => $item){
+            $itemsArr[$name] = $item->toArray();
+        }
 
+        return ["name"=>$this->name, "type"=>$this->type,"capacity"=>$this->capacity,"items"=>$itemsArr];
     }
 
 
     /**
      * @param string $name
      * @param int $quantity
-     * @param int $value
+     * @param int $singleValue
      *
      * @return int
      * @description 0 = item successfully added, 1 = item already exists
      */
-    public function addItem(string $name, int $quantity, int $value):int
+    public function addItem(string $name, int $quantity, int $singleValue):int
     {
         if (!isset($this->items[$name])) {
-            $this->items[$name] = new Item($name, $quantity, $value);
+            $this->items[$name] = new Item($name, $quantity, $singleValue);
             return 0;
         }
         return 1;
@@ -138,5 +144,12 @@ class Container
     {
         $this->capacity = $capacity;
         return $this;
+    }
+
+    public function getItemsFromArray(array $items)
+    {
+        foreach ($items as $item) {
+            $this->addItem($item["name"], $item["quantity"], $item["singleValue"]);
+        }
     }
 }

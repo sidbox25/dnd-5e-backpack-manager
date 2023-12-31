@@ -9,6 +9,13 @@ services:
       context: .
       dockerfile: docker/App/Dockerfile
       target: dev
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_HOST=db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - APP_MYSQL_DRIVER=mysql
+      - APP_MYSQL_DB_NAME=dnd5eItemManager
     volumes: #special case "mount vlume"
       - ./:/var/www/html:rw
 
@@ -18,7 +25,14 @@ services:
     build:
       context: .
       dockerfile: docker/App/Dockerfile
-      target: base
+      target: dev
+    environment:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_HOST=db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - APP_MYSQL_DRIVER=mysql
+      - APP_MYSQL_DB_NAME=dnd5eItemManager
     volumes: #special case "mount vlume"
       - ./:/var/www/html:rw
 
@@ -39,9 +53,10 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=example
       - MYSQL_HOST=db
-      #- MYSQL_DATABASE=dnd5eItemManager
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user
+      - APP_MYSQL_DRIVER=mysql
+      - APP_MYSQL_DB_NAME=dnd5eItemManager
 #    volumes:
 #      - docker/Database/DatabaseBackup:/var/lib/mysql:rw
   adminer:

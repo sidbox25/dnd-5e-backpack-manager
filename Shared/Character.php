@@ -23,6 +23,19 @@ class Character
 
     }
 
+
+    public function toArray()
+    {
+        $containersArr = [];
+        foreach ($this->containers as $name => $container){
+            $containersArr[$name] = $container->toArray();
+        }
+
+        return ["name"=>$this->name, "strength"=>$this->strength,"containers"=>$containersArr];
+    }
+
+
+
     /**
      * @param string $name
      * @param string $type
@@ -40,6 +53,7 @@ class Character
         }
         return 1;
     }
+
 
     /**
      * @param string $name
@@ -104,6 +118,16 @@ class Character
     public function setContainers(array $containers): Character
     {
         $this->containers = $containers;
+        return $this;
+    }
+
+    public function getContainersFromArray(array $containers): Character
+    {
+        foreach ($containers as $container){
+            $this->addContainer($container["name"], $container["type"],$container["capacity"]);
+            $this->getContainer($container["name"])->getItemsFromArray($container["items"]);
+        }
+
         return $this;
     }
 }

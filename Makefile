@@ -9,9 +9,9 @@ start:
 
 .PHONY: devup
 devup:
-	docker-compose up -d --build application_dev
-	docker-compose up -d --build db
-	docker-compose up -d --build adminer
+	docker-compose up -d  application_dev
+	docker-compose up -d  db
+	docker-compose up -d  adminer
 	chmod +x ./scripts/*
 	./scripts/init-environment.sh
 	./scripts/openBrowser.sh

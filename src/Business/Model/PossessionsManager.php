@@ -3,7 +3,7 @@
 namespace src\Business\Model;
 
 use Shared\Character;
-use Shared\Item;
+use src\Persistence\Data;
 
 class PossessionsManager
 {
@@ -34,12 +34,12 @@ class PossessionsManager
 
 
     /**
-     * @return array<Character>
+     * @return array<String,Character>
      */
     private function getRawData(): array
     {
         $Racknar = new Character("Racknar",15);
-        $data["Racknar"] = $Racknar;
+        $campaign["Racknar"] = $Racknar;
 
         $Racknar->addContainer("backpack","backpack",45);
 
@@ -53,7 +53,7 @@ class PossessionsManager
 
 
         $mosis = new Character("mosis",15);
-        $data["mosis"] = $mosis;
+        $campaign["mosis"] = $mosis;
         $mosis->addContainer("backpack","backpack",45);
 
         $mosis->getContainer("backpack")->addItem("rations",10,1);
@@ -64,9 +64,21 @@ class PossessionsManager
         $mosis->addContainer("pouch","pouch",10);
         $mosis->getContainers()["pouch"]->addItem("herbs",10,15);
 
-        return $data;
-    }
+        $campaignArr = [];
+        foreach ($campaign as $name => $character){
+            $campaignArr[$name] = $character->toArray();
+        }
 
+        $temp = json_encode($campaignArr,True);
+        Data::saveCampaign($campaign);
+
+        $otherCampaign = [];
+        foreach (json_decode($temp,true) as $name => $character){
+            $otherCampaign[$name] = new Character($character["name"],$character["strength"]);
+            $otherCampaign[$name]->getContainersFromArray($character["containers"]);
+        }
+        return $campaign;
+    }
     /**
      * @param array $path
      *
@@ -105,6 +117,4 @@ class PossessionsManager
             }
         }
     }
-
-
 }

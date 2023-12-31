@@ -25,7 +25,7 @@ class ConnectionConfig
      */
     public static function getDatabaseHost(): string
     {
-        return getenv('CALCULATOR_APP_MYSQL_HOST');
+        return getenv('MYSQL_HOST');
     }
 
     /**
@@ -33,7 +33,7 @@ class ConnectionConfig
      */
     public static function getDatabaseName(): string
     {
-        return getenv('CALCULATOR_APP_MYSQL_DB_NAME');
+        return getenv('APP_MYSQL_DB_NAME');
     }
 
     /**
@@ -41,6 +41,6 @@ class ConnectionConfig
      */
     public static function getDatabaseDriver(): string
     {
-        return getenv('CALCULATOR_APP_MYSQL_DRIVER');
+        return getenv('APP_MYSQL_DRIVER');
     }
 }

@@ -6,17 +6,19 @@ class Item
 {
     private string $name;
     private int $quantity;
-    private int $totalValue;
+    private int $singleValue;
 
-    public function __construct(string $name, int $quantity, int $totalValue)
+    public function __construct(string $name, int $quantity, int $singleValue)
     {
         $this->name = $name;
         $this->quantity = $quantity;
-        $this->totalValue = $totalValue;
+        $this->singleValue = $singleValue;
     }
 
-    public function save(){
+    public function toArray()
+    {
 
+        return ["name"=>$this->name, "quantity"=>$this->quantity,"singleValue"=>$this->singleValue];
     }
 
     public function getName(): string
@@ -41,14 +43,19 @@ class Item
         return $this;
     }
 
-    public function getTotalValue(): int
+    public function getSingleValue(): int
     {
-        return $this->totalValue;
+        return $this->singleValue;
     }
 
-    public function setTotalValue(int $totalValue): Item
+    public function setSingleValue(int $singleValue): Item
     {
-        $this->totalValue = $totalValue;
+        $this->singleValue = $singleValue;
         return $this;
+    }
+
+    public function getTotalValue(): int
+    {
+        return $this->singleValue * $this->quantity;
     }
 }
