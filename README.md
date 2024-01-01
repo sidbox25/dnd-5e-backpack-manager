@@ -2,8 +2,9 @@
 
 -btw use sql "transactions" on prod ("begin transaction")
 
-- solve "Uncaught PDOException: could not find driver" in connector.php
-- install/enable pdo_mysql in php.ini
+- data.php 74 (no break if fetch return false(aka nothing to fetch))
+
+- find a element to FE to specify what item to add(with its properties)
 
 - make jsonDecode output usable/ check what is gotten(for now )
 

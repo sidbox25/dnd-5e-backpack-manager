@@ -16,86 +16,81 @@ class PossessionsManager
     /**
      * @var array<Character>
      */
-    private array $data;
+    private array $campaignData;
 
     public function __construct()
     {
-        $this->data = $this->getRawData();
+        $this->campaignData = $this->getCampaignDataFromDb();
     }
 
 
 
-    public function getData():array
+    public function getCampaignData():array
     {
         $this->checkForButtonPress();
 
-        return $this->data;
+        return $this->campaignData;
     }
 
 
     /**
      * @return array<String,Character>
      */
-    private function getRawData(): array
+    private function getCampaignDataFromDb(): array #todo ?put in Data.php?
     {
-        $Racknar = new Character("Racknar",15);
-        $campaign["Racknar"] = $Racknar;
-
-        $Racknar->addContainer("backpack","backpack",45);
-
-        $Racknar->getContainer("backpack")->addItem("rations",10,1);
-        $Racknar->getContainer("backpack")->addItem("arrows",20,1);
-        $Racknar->getContainer("backpack")->addItem("bolt",20,1);
-        $Racknar->getContainer("backpack")->addItem("sword",1,15);
-
-        $Racknar->addContainer("pouch","pouch",10);
-        $Racknar->getContainer("pouch")->addItem("herbs",10,15);
-
-
-        $mosis = new Character("mosis",15);
-        $campaign["mosis"] = $mosis;
-        $mosis->addContainer("backpack","backpack",45);
-
-        $mosis->getContainer("backpack")->addItem("rations",10,1);
-        $mosis->getContainer("backpack")->addItem("arrows",20,1);
-        $mosis->getContainer("backpack")->addItem("bolt",20,1);
-        $mosis->getContainer("backpack")->addItem("sword",1,15);
-
-        $mosis->addContainer("pouch","pouch",10);
-        $mosis->getContainers()["pouch"]->addItem("herbs",10,15);
-
+//        $Racknar = new Character("Racknar",15);
+//        $campaign["Racknar"] = $Racknar;
+//
+//        $Racknar->addContainer("backpack","backpack",45);
+//
+//        $Racknar->getContainer("backpack")->addItem("rations",10,1);
+//        $Racknar->getContainer("backpack")->addItem("arrows",20,1);
+//        $Racknar->getContainer("backpack")->addItem("bolt",20,1);
+//        $Racknar->getContainer("backpack")->addItem("sword",1,15);
+//
+//        $Racknar->addContainer("pouch","pouch",10);
+//        $Racknar->getContainer("pouch")->addItem("herbs",10,15);
+//
+//
+//        $mosis = new Character("mosis",15);
+//        $campaign["mosis"] = $mosis;
+//        $mosis->addContainer("backpack","backpack",45);
+//
+//        $mosis->getContainer("backpack")->addItem("rations",10,1);
+//        $mosis->getContainer("backpack")->addItem("arrows",20,1);
+//        $mosis->getContainer("backpack")->addItem("bolt",20,1);
+//        $mosis->getContainer("backpack")->addItem("sword",1,15);
+//
+//        $mosis->addContainer("pouch","pouch",10);
+//        $mosis->getContainers()["pouch"]->addItem("herbs",10,15);
+        $campaignStr = Data::getLastDataPreProcessing(Data::CAMPAIGN["epichtröm2"]);
+        
         $campaignArr = [];
-        foreach ($campaign as $name => $character){
-            $campaignArr[$name] = $character->toArray();
+        foreach (json_decode($campaignStr,true) as $name => $character){
+            $campaignArr[$name] = new Character($character["name"],$character["strength"]);
+            $campaignArr[$name]->getContainersFromArray($character["containers"]);
         }
-
-        $temp = json_encode($campaignArr,True);
-        Data::saveCampaign($campaign);
-
-        $otherCampaign = [];
-        foreach (json_decode($temp,true) as $name => $character){
-            $otherCampaign[$name] = new Character($character["name"],$character["strength"]);
-            $otherCampaign[$name]->getContainersFromArray($character["containers"]);
-        }
-        return $campaign;
+        return $campaignArr;
     }
     /**
      * @param array $path
      *
-     * @return array
+     * @return void
      */
-    private function addItemQuantity(array $path)
+    private function addItemQuantity(array $path):void
     {
-        $this->data[$path[self::CHARACTER_NAME]]
+        $this->campaignData[$path[self::CHARACTER_NAME]]
             ->getContainer($path[self::BAG_NAME])
             ->addAmountFromItem($path[self::ITEM_NAME],1);
+        Data::saveCampaign($this->getCampaignAsJsonFriendlyArray());
     }
 
-    private function removeItemQuantity(array $path)
+    private function removeItemQuantity(array $path):void
     {
-        $this->data[$path[self::CHARACTER_NAME]]
+        $this->campaignData[$path[self::CHARACTER_NAME]]
             ->getContainer($path[self::BAG_NAME])
             ->removeAmountFromItem($path[self::ITEM_NAME],1);
+        Data::saveCampaign($this->getCampaignAsJsonFriendlyArray());
     }
 
     private function checkForButtonPress(){
@@ -116,5 +111,15 @@ class PossessionsManager
                 }
             }
         }
+    }
+
+    private function getCampaignAsJsonFriendlyArray(){
+
+        $campaignDataArr = [];
+        foreach ($this->campaignData as $name => $character){
+            $campaignDataArr[$name] = $character->toArray();
+        }
+
+        return $campaignDataArr;
     }
 }

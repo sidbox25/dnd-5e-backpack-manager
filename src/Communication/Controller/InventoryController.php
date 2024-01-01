@@ -25,7 +25,7 @@ class InventoryController
             __DIR__ . "/../../Presentation/",
             "views/json.comparator.main.layout.twig",
             [
-                'characters' => $PossessionsManager->getData(),
+                'characters' => $PossessionsManager->getCampaignData(),
             ]
         );
     }

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS  dnd5eItemManager.Campaigns (
 CREATE TABLE IF NOT EXISTS dnd5eItemManager.Saves (
     SavesID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CampaignsID INTEGER NOT NULL,
-    timestamp TIMESTAMP,#todo look up how to timestamp a insert statment
+    save_date TIMESTAMP,#todo look up how to timestamp a insert statment
     Json longtext NOT NULL,
     description VARCHAR(255),
     FOREIGN KEY (CampaignsID) REFERENCES dnd5eItemManager.Campaigns(CampaignsID)

@@ -2,13 +2,14 @@
 
 namespace src\Persistence;
 
+use PDO;
 use Shared\Character;
 use src\Core\Connector;
 
 class data
 {
 
-    private const TABLES = [
+    private const TABLES = [ #todo doesnt work
         "Saves"=> "dnd5eItemManager.Saves",
         "Campaigns" => "dnd5eItemManager.Campaigns",
     ];
@@ -16,7 +17,7 @@ class data
     /**
      * @var array<String,int>
      */
-    private const CAMPAIGN = [
+    public const CAMPAIGN = [
         "epichtröm2"=>1
     ];#todo is there a better way?
 
@@ -32,10 +33,9 @@ class data
 
         $connection = Connector::getConnection();
 
-        $stm = $connection->prepare("INSERT INTO :save (`CampaignsID`, `Json`)VALUES (:campaignId, :json);");
-        $stm->bindValue("saves",Data::TABLES["Saves"]);
+        $stm = $connection->prepare("INSERT INTO dnd5eItemManager.Saves (`CampaignsID`, `Json`) VALUES (:campaignId, :json);");
+        $stm->bindValue("campaignId", Data::CAMPAIGN["epichtröm2"],PDO::PARAM_INT);
         $stm->bindValue("json", $JsonString);
-        $stm->bindValue("campaignId", Data::CAMPAIGN["epichtröm2"]);
         return $stm->execute();
     }
 
@@ -47,8 +47,7 @@ class data
     static function getAllDataPreProcessing(String $Campaign): false|\PDOStatement
     {
         $connection = Connector::getConnection();
-        $stm = $connection->prepare("SELECT (campainId,Json) FROM :saves WHERE campainId = :campainId ");
-        $stm->bindValue("saves",Data::TABLES["Saves"]);
+        $stm = $connection->prepare("SELECT (campainId,Json) FROM dnd5eItemManager.Saves WHERE campainId = :campainId ");
         $stm->bindValue("campaignId", Data::CAMPAIGN[$Campaign]);
         $stm->execute();
 
@@ -56,19 +55,24 @@ class data
     }
 
     /**
-     * @param String $Campaign
+     * @param String $CampaignID
      *
-     * @return false|\PDOStatement
+     * @return String
      */
-    static function getLastDataPreProcessing(String $Campaign): false|\PDOStatement
+    static function getLastDataPreProcessing(String $CampaignID): String|null
     {
         $connection = Connector::getConnection();
-        $stm = $connection->prepare("SELECT (campainId,Json) FROM :saves WHERE campainId = :campainId");#todo only get the last valid campain
-        $stm->bindValue("saves",Data::TABLES["Saves"]);
-        $stm->bindValue("campaignId", Data::CAMPAIGN[$Campaign]);
+        $stm = $connection->prepare("SELECT (Json) FROM dnd5eItemManager.Saves
+            WHERE CampaignsID = :campaignId ORDER BY save_date DESC LIMIT 1");
+        $stm->bindValue("campaignId", $CampaignID);
         $stm->execute();
-
-        return $stm;
+        if (!empty($stm->fetch())){
+            $result = $stm->fetch()["Json"];
+        } else {
+            $result = null;
+        }
+        $test = !empty($stm->fetch()) ? 1 : null;#todo Why not work
+        return $result;
     }
 
     /**
@@ -86,7 +90,7 @@ class data
     static function createCampaign(String $campaignName, String $campaignDescription)
     {
         $connection = Connector::getConnection();
-        $stm = $connection->prepare("INSERT INTO :Campaigns (`name`, `description`) VALUES (:name, :description); ");
+        $stm = $connection->prepare("INSERT INTO dnd5eItemManager.Campaigns (`name`, `description`) VALUES (:name, :description); ");
         $stm->bindValue("Campaigns",Data::TABLES["Campaigns"]);
         $stm->bindValue("name", $campaignName);
         $stm->bindValue("description", $campaignDescription ? $campaignDescription==="": NULL);

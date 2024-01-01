@@ -9,7 +9,7 @@ class ConnectionConfig
      */
     public static function getDatabaseUser(): string
     {
-        return getenv('MYSQL_USER');
+        return getenv('APP_MYSQL_USER');
     }
 
     /**
@@ -17,7 +17,7 @@ class ConnectionConfig
      */
     public static function getDatabasePassword(): string
     {
-        return getenv('MYSQL_PASSWORD');
+        return getenv('APP_MYSQL_PASSWORD');
     }
 
     /**

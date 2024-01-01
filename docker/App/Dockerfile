@@ -4,13 +4,30 @@ WORKDIR /var/www/html
 
 COPY . .
 
+#todo idk but copying everything is
+#COPY src src/
+#COPY autoload.php ./
+#COPY cli.php ./
+#COPY tests tests/
+
 # change index.php root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/src
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN a2enmod rewrite
 
-RUN apt-get update && apt-get install -y unzip
+
+RUN apt-get update && apt-get install -y    \
+    curl                                    \
+    git                                     \
+    nano                                    \
+    unzip                                   \
+    vim                                     \
+    wget                                    \
+    jq                                      \
+    default-mysql-client                    \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # composer
 ENV COMPOSER_INSTALLER_GIT_HASH da0a3a5b5c1c9d50f1d0115e7008018597dd3803
@@ -31,6 +48,8 @@ RUN php -r "if (hash_file('SHA384', 'composer-setup.php') === '${COMPOSER_INSTAL
     php composer-setup.php --install-dir /usr/local/bin/ --filename composer --version $COMPOSER_VERSION && \
     php -r "unlink('composer-setup.php');"
 
+#PDO
+RUN docker-php-ext-install pdo pdo_mysql
 
 FROM base as dev
 
