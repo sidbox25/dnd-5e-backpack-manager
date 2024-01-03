@@ -27,7 +27,7 @@ services:
     build:
       context: .
       dockerfile: docker/App/Dockerfile
-      target: dev
+      target: base
     environment:
       - MYSQL_ROOT_PASSWORD=example
       - MYSQL_HOST=db
