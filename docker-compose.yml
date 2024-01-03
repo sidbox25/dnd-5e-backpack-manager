@@ -39,7 +39,8 @@ services:
       - APP_MYSQL_DB_NAME=dnd5eItemManager
     volumes: #special case "mount vlume"
       - ./:/var/www/html:rw
-
+    ports:
+      - 80:400
 #  database:
 #    image: dnd5e-tool-database
 #    build:
