@@ -5,7 +5,7 @@ start:
 	docker-compose up -d --build db
 	chmod +x ./scripts/*
 	./scripts/init-environment.sh
-	./scripts/openBrowser.sh
+
 
 .PHONY: devup
 devup:
