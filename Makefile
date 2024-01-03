@@ -1,8 +1,8 @@
 
 .PHONY: start
 start:
-	docker-compose up -d --build application_prod
-	docker-compose up -d --build db
+	docker-compose up -d application_prod
+	docker-compose up -d db
 	chmod +x ./scripts/*
 	./scripts/init-environment.sh
 
