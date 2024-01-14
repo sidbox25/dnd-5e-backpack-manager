@@ -64,12 +64,17 @@ class PossessionsManager
 //        $mosis->addContainer("pouch","pouch",10);
 //        $mosis->getContainers()["pouch"]->addItem("herbs",10,15);
         $campaignStr = Data::getLastDataPreProcessing(Data::CAMPAIGN["epichtröm2"]);
-        
+
+
         $campaignArr = [];
-        foreach (json_decode($campaignStr,true) as $name => $character){
-            $campaignArr[$name] = new Character($character["name"],$character["strength"]);
-            $campaignArr[$name]->getContainersFromArray($character["containers"]);
+        if ($campaignStr!=null){
+            foreach (json_decode($campaignStr,true) as $name => $character){
+                $campaignArr[$name] = new Character($character["name"],$character["strength"]);
+                $campaignArr[$name]->getContainersFromArray($character["containers"]);
+            }
         }
+
+
         return $campaignArr;
     }
     /**
